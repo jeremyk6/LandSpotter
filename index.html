@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css"/>
+    <link rel="stylesheet" href="index.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <script src="index.js"></script>
+    <title>LandSpotter</title>
+  </head>
+  <body onload=init()>
+    <header class="container">
+        <img id="logo" src="images/logo.svg">
+        <h1>LandSpotter</h1>
+    </header>
+    <main class="container">
+        <div id="map"></div>
+        <p></p>
+        <div id="search_container" class="pico">
+            <div class="grid">
+              <div>
+                  <p>Commune:</p>
+                  <input
+                      id="input_noms_communes"
+                      list="noms_communes"
+                      type="text"
+                      name="commune"
+                      required
+                  />
+                  <datalist id="noms_communes">
+                  </datalist>
+                  <!-- <input type="checkbox" id="limitrophes" name="limitrophes"/>
+                  <label for="limitrophes">Communes limitrophes</label> -->
+              </div>
+              <div>
+                  <p>Surface (m²):</p>
+                  <input
+                      id="surface"
+                      type="number"
+                      name="surface"
+                      placeholder="0"
+                      required
+                  />
+              </div>
+          </div>
+          <p></p>
+          <button id="search" onclick=search()>Rechercher</button>
+        </div>
+        <div id="result_container" class="pico">
+          <table id="results_table" class="striped">
+            <thead>
+              <tr>
+                <th scope="col">Parcelle</th>
+                <th scope="col">Surface (m²)</th>
+                <th scope="col">Écart (%)</th>
+                <th scope="col">Voir sur Maps</th>
+              </tr>
+            </thead>
+            <tbody id="results">
+            </tbody>
+          </table>
+          <button id="return" onclick=display_search()>Retour</button>
+        </div>
+    </main>
+  </body>
+</html>
